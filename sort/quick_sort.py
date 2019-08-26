@@ -1,12 +1,17 @@
-def quick_sort(a: list):
+def quick_sort(a: list) -> list:
+    # base case
     if len(a) < 2:
         return a
+    # recursive case
     else:
-        pivot = a[0]
-        le_pivot = [i for i in a[1:] if i <= pivot]
-        gt_pivot = [i for i in a[1:] if i > pivot]
-        return quick_sort(le_pivot) + [pivot] + quick_sort(gt_pivot)
+        pvt = a[0]
+        # subarray where numbers less or equal then pvt
+        le_pvt = [i for i in a[1:] if i <= pvt]
+        # subarray where numbers strictly greater then pvt
+        gt_pvt = [i for i in a[1:] if i > pvt]
+        return quick_sort(le_pvt) + [pvt] + quick_sort(gt_pvt)
 
-a = [20, 15, 59, 1, -8, 74, 33, 32]
+
+a = [2, 6, 0, -56]
 
 print(quick_sort(a))
