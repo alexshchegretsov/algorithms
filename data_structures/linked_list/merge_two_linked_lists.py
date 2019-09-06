@@ -1,3 +1,10 @@
+# algorithm
+# 1. find smallest node by comparison nodes values from two lists
+# 2. save next node to temporal variable
+# 3. set next link to None in current node
+# 4. add this node to merged linked list
+# 5. shift pointer curr to temporal variable in which we're saved next node
+
 class Node:
     def __init__(self, v=None):
         self.v = v
