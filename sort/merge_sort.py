@@ -24,7 +24,6 @@ def merge(a: list, left: list, right: list) -> list:
         a[k] = right[j]
         j += 1
         k += 1
-
     return a
 
 
