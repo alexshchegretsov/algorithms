@@ -25,6 +25,7 @@ def reverse_nodes(head: Node):
     return prev
 
 
+
 if __name__ == '__main__':
     n1 = Node(1)
     n2 = Node(2)
