@@ -1,11 +1,11 @@
-def partition(xs, start, end):
+def partition(a, start, end):
     follower = leader = start
     while leader < end:
-        if xs[leader] <= xs[end]:
-            xs[follower], xs[leader] = xs[leader], xs[follower]
+        if a[leader] <= a[end]:
+            a[follower], a[leader] = a[leader], a[follower]
             follower += 1
         leader += 1
-    xs[follower], xs[end] = xs[end], xs[follower]
+    a[follower], a[end] = a[end], a[follower]
     return follower
 
 

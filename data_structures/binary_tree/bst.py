@@ -26,9 +26,19 @@ class BST:
         else:
             if not node.right:
                 node.right = Node(v)
-                node.right.parent = node # set parent
+                node.right.parent = node  # set parent
             else:
                 self._insert(v, node.right)
+
+    def print_nodes(self):
+        if self.root:
+            self.__print_nodes(self.root)
+
+    def __print_nodes(self, node: Node):
+        if node:
+            self.__print_nodes(node.left)
+            self.__print_nodes(node.right)
+            print(node.v)
 
     def print_tree(self):
         if self.root:
@@ -83,7 +93,6 @@ class BST:
     def find(self, v):
         return self._find(self.root, v) if self.root else None
 
-
     def _find(self, node: Node, v):
         if v == node.v:
             return node
@@ -94,15 +103,21 @@ class BST:
         return False
 
     def delete_value(self, v):
-        self.delete_node(self.find(v))
+        if self.find(v):
+            self.delete_node(self.find(v))
+        else:
+            return
 
     def delete_node(self, node: Node):
+        # if not node:
+        #     return
 
         # returns min node in tree rooted as input node
         def min_value_node(node: Node):
             curr = node
-            while curr:
+            while curr.left:
                 curr = curr.left
+            print(curr)
             return curr
 
         # returns th number of children of the specified node
@@ -125,21 +140,28 @@ class BST:
 
         if not num_child:
             # remove reference to the node from the parent
-            if parent_node.left == node:
-                parent_node.left = None
+            if parent_node:
+                if parent_node.left == node:
+                    parent_node.left = None
+                else:
+                    parent_node.right = None
             else:
-                parent_node.right = None
+                self.root = None
+
         # CASE 2 (node has a single child)
         if num_child == 1:
 
             # get the single child node
             child = node.left if node.left else node.right
 
-            # replece the node to be deleted to its child
-            if parent_node.left == node:
-                parent_node.left = child
+            if parent_node:
+                # replece the node to be deleted to its child
+                if parent_node.left == node:
+                    parent_node.left = child
+                else:
+                    parent_node.right = child
             else:
-                parent_node.right = child
+                self.root = child
 
             # correct the child parent pointer
             child.parent = parent_node
@@ -148,7 +170,7 @@ class BST:
         if num_child == 2:
 
             # get the inorder successor of the deleted node
-            successor = min_value_node(node)
+            successor = min_value_node(node.right)
 
             # copy the inorder successor's value to the node formerly
             # holding the value we want to be delete
@@ -166,7 +188,7 @@ if __name__ == '__main__':
     b.insert(2)
     b.insert(8)
     b.insert(9)
-    b.insert(15)
+    b.insert(16)
     b.insert(0)
     b.insert(-7)
     b.insert(-2)
@@ -174,8 +196,14 @@ if __name__ == '__main__':
     b.insert(94)
     b.insert(95)
     b.insert(14)
+    b.insert(13)
+    b.insert(15)
     # b.print_tree()
-    print(b.height())
-    print(b.minimum())
-    print(b.maximum())
-    print(b.search(0))
+    # print(b.height())
+    # print(b.minimum())
+    # print(b.maximum())
+    # print(b.search(0))
+    # b.delete_value(94)
+    b.delete_value(15)
+    # b.print_tree()
+    b.print_nodes()
