@@ -1,5 +1,6 @@
 from collections import deque
 
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, x):
@@ -37,6 +38,7 @@ class Solution:
         elif v > node.val and node.right:
             return self.height(node.right, v, curr_height + 1)
 
+
 class BinarySolution:
     def isCousins(self, root: TreeNode, x: int, y: int) -> bool:
         parent_x = self.find_parent(root, x)
@@ -62,35 +64,29 @@ class BinarySolution:
                     return curr_node
                 dq.append(curr_node.right)
 
-
-
     def height(self, node: TreeNode, v, curr_height):
         if not node:
             return
         if v == node.val:
             return curr_height
-        down_level = self.height(node.left, v, curr_height+1)
+        down_level = self.height(node.left, v, curr_height + 1)
         if down_level:
             return down_level
-        down_level = self.height(node.right, v, curr_height+1)
+        down_level = self.height(node.right, v, curr_height + 1)
         return down_level
 
 
 if __name__ == '__main__':
-   root = TreeNode(1)
-   root.left = TreeNode(2)
-   root.right = TreeNode(3)
-   root.right.right = TreeNode(4)
-   # root.right.right = TreeNode(5)
-   s = BinarySolution()
-   # p = s.find_parent(root, 7)
-   # print(p)
-   print(s.height(root, 3, 0))
-   print(s.height(root, 4, 0))
-   print(s.find_parent(root, 3).val)
-   print(s.find_parent(root, 4).val)
-   # print(s.isCousins(root, 3, 4))
-
-
-
-
+    root = TreeNode(1)
+    root.left = TreeNode(2)
+    root.right = TreeNode(3)
+    root.right.right = TreeNode(4)
+    # root.right.right = TreeNode(5)
+    s = BinarySolution()
+    # p = s.find_parent(root, 7)
+    # print(p)
+    print(s.height(root, 3, 0))
+    print(s.height(root, 4, 0))
+    print(s.find_parent(root, 3).val)
+    print(s.find_parent(root, 4).val)
+    # print(s.isCousins(root, 3, 4))
