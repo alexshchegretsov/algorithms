@@ -3,12 +3,11 @@ def is_balanced(s: str) -> bool:
     open_brackets = {'(', '[', '{'}
     closed_brackets = {')', ']', '}'}
     open_to_closed = {'(': ')', '[': ']', '{': '}'}
-    for i in s:
-        print(stack)
-        if i in open_brackets:
-            stack.append(i)
-        elif i in closed_brackets:
-            if not stack or stack and open_to_closed[stack.pop()] != i:
+    for bracket in s:
+        if bracket in open_brackets:
+            stack.append(bracket)
+        elif bracket in closed_brackets:
+            if not stack or stack and open_to_closed[stack.pop()] != bracket:
                 return False
     return stack == []
 
